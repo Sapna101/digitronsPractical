@@ -1,0 +1,24 @@
+<div class="ms-Grid form-view">
+  <div class="ms-Grid-row form-title">
+    Book Your Slot here .....
+  </div>
+  <div class="ms-Grid-row">
+    <div class="ms-Grid-col ms-u-lg12">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()" ngNativeValidate>
+      <div>
+        First Name: <input type="text" formControlName="firstname" required >
+      </div>
+      <div>
+        Last Name: <input type="text" formControlName="lastname" required>
+      </div>
+      <div>
+        Phone Number: <input type="number" formControlName="phonenumber" required>
+      </div>
+      <div>
+        <button type="submit">Save</button>
+        <button [routerLink]="['/home']">Cancle</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
