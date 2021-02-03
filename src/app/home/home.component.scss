@@ -1,18 +1,26 @@
 mat-card{
   background-color: #eceaea;
-  width: calc(8vw);
+  width: calc(80vw);
   padding: 2px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .card-view{
   margin-left: 10px;
-  text-align: center;
+  text-align: left;
   padding: 5px;
-  margin-top: 30px;
+  margin-top: 5px;
 }
 
 .book-view{
   background-color: red;
+}
+
+.time-content{
+  margin-left: 15px;
+}
+
+.ms-Grid-row {
+    margin: 0px ;
 }

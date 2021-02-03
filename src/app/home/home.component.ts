@@ -15,13 +15,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.setDate();
-    this.http.get('http://localhost:3000/bookedlist',{ params: {date : this.selecteddate} }).subscribe((res)=>{
-      console.log("got res",res);
-      this.bookedSlotData=res;
-      this.markbookedslot();
-    },(err) => {
-      console.log(err);
-    });
+    this.getselecteddata();
   }
 
   markbookedslot(){
@@ -51,6 +45,17 @@ export class HomeComponent implements OnInit {
     month++;
     if (month<10) { month='0'+month; }
     this.selecteddate = this.selecteddate.getFullYear()+'-'+month+'-'+date;
+  }
+
+  getselecteddata(){
+    console.log("getselecteddata");
+    this.http.get('http://localhost:3000/bookedlist',{ params: {date : this.selecteddate} }).subscribe((res)=>{
+      console.log("got res",res);
+      this.bookedSlotData=res;
+      this.markbookedslot();
+    },(err) => {
+      console.log(err);
+    });
   }
 
 }

@@ -1,11 +1,11 @@
 <div class="ms-Grid">
   <div class="ms-Grid-row">
-      Choose Date : <input type="date" [(ngModel)]="selecteddate">
+      Choose Date : <input type="date" [(ngModel)]="selecteddate" (change)="getselecteddata()">
   </div>
   <div class="ms-Grid-row">
-    <div class="ms-Grid-col ms-u-sm2 ms-u-lg1 ms-u-md2 card-view"  *ngFor="let timeslot of timeslots;let i=index" [routerLink]="[ '/details',timeslot]">
+    <div class="ms-Grid-col ms-u-sm12 ms-u-lg12 ms-u-md12 card-view"  *ngFor="let timeslot of timeslots;let i=index" [routerLink]="[ '/details',timeslot]">
       <mat-card [ngClass]="{'book-view':timeslot.isbooked}">
-        <div>{{timeslot.time}}</div>
+        <div class="time-content">{{timeslot.time}}</div>
       </mat-card>
     </div>
   </div>
