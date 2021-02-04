@@ -48,9 +48,7 @@ export class HomeComponent implements OnInit {
   }
 
   getselecteddata(){
-    console.log("getselecteddata");
     this.http.get('http://localhost:3000/bookedlist',{ params: {date : this.selecteddate} }).subscribe((res)=>{
-      console.log("got res",res);
       this.bookedSlotData=res;
       this.markbookedslot();
     },(err) => {

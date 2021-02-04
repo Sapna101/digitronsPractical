@@ -15,6 +15,7 @@ export class DetailsComponent implements OnInit {
   selecteddate;
   isbooked;
   id;
+  showdate;
   userForm = new FormGroup({
     firstname: new FormControl(''),
     lastname: new FormControl(''),
@@ -29,6 +30,8 @@ export class DetailsComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
         this.timeslotid = params['time'];
         this.selecteddate = params['date'];
+        this.showdate = new Date(this.selecteddate);
+        this.showdate = this.showdate.toString().slice(4,10);
         this.isbooked = params['isbooked'];
         if(this.isbooked == "true"){
           this.id = params['_id'];

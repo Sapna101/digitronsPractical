@@ -1,6 +1,8 @@
 <div class="ms-Grid form-view">
   <div class="ms-Grid-row form-title">
-    Book Your Slot here for {{timeslotid}}.....
+    Book your slot here for {{timeslotid}}
+      <span *ngIf="timeslotid<12 && timeslotid>8">am</span>
+      <span *ngIf="timeslotid<6 || timeslotid==12">pm</span> on {{showdate}}
   </div>
   <div class="ms-Grid-row">
     <div class="ms-Grid-col ms-u-lg12">
