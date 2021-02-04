@@ -14,11 +14,14 @@
         Last Name: <input type="text" formControlName="lastname" required>
       </div>
       <div>
-        Phone Number: <input type="number" formControlName="phonenumber" required>
+        Phone Number: <input type="number" formControlName="phonenumber" (change)="validateNumber()" required>
+      </div>
+      <div *ngIf="errormessage" class="error-message">
+        Enter valid phone-number
       </div>
       <div>
         <button type="submit">Save</button>
-        <button [routerLink]="['/home']">Cancle</button>
+        <button [routerLink]="['/home',{date : selecteddate}]">Cancle</button>
       </div>
     </form>
     </div>

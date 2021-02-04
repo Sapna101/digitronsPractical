@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-home',
@@ -10,10 +12,17 @@ export class HomeComponent implements OnInit {
   timeslots = [{time :9},{time :10},{time :11},{time :12},{time :1},{time :2},{time :3},{time :4},{time :5}];
   selecteddate : any = new Date();
   bookedSlotData : any = [];
+  sub;
 
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient,
+              private route : ActivatedRoute) { }
 
   ngOnInit() {
+    this.sub = this.route.params.subscribe(params => {
+        if(params['date']){
+          this.selecteddate = new Date(params['date']);
+        }
+    });
     this.setDate();
     this.getselecteddata();
   }
@@ -52,7 +61,7 @@ export class HomeComponent implements OnInit {
       this.bookedSlotData=res;
       this.markbookedslot();
     },(err) => {
-      console.log(err);
+      // console.log(err);
     });
   }
 

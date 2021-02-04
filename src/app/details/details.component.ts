@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators  } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
@@ -16,6 +16,7 @@ export class DetailsComponent implements OnInit {
   isbooked;
   id;
   showdate;
+  errormessage = false;
   userForm = new FormGroup({
     firstname: new FormControl(''),
     lastname: new FormControl(''),
@@ -42,23 +43,35 @@ export class DetailsComponent implements OnInit {
     });
   }
 
+  validateNumber(){
+    let data = this.userForm.value;
+    if(data.phonenumber.toString().length != 10){
+      this.errormessage = true;
+    } else {
+      this.errormessage = false;
+    }
+  }
+
   onSubmit() {
     let data = this.userForm.value;
-    if(this.isbooked == "true"){
-      data._id = this.id;
-      this.http.post('http://localhost:3000/booked',data).subscribe((res)=>{
-        this.router.navigate(['/home']);
-      },(err) => {
-        // console.log(err);
-      });
+    if(!this.errormessage){
+        if(this.isbooked == "true"){
+          data._id = this.id;
+          this.http.post('http://localhost:3000/booked',data).subscribe((res)=>{
+            this.router.navigate(['/home',{date : this.selecteddate}]);
+          },(err) => {
+            // console.log(err);
+          });
+        }
+        data.time = this.timeslotid;
+        data.date = this.selecteddate;
+        this.http.post('http://localhost:3000/book',data).subscribe((res)=>{
+          this.router.navigate(['/home',{date : this.selecteddate}]);
+        },(err) => {
+          // console.log(err);
+        });
     }
-    data.time = this.timeslotid;
-    data.date = this.selecteddate;
-    this.http.post('http://localhost:3000/book',data).subscribe((res)=>{
-      this.router.navigate(['/home']);
-    },(err) => {
-      // console.log(err);
-    });
+
   }
 
 }
