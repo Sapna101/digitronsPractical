@@ -3,10 +3,10 @@
       Choose Date : <input type="date" [(ngModel)]="selecteddate" (change)="getselecteddata()">
   </div>
   <div class="ms-Grid-row">
-    <div class="ms-Grid-col ms-u-sm12 ms-u-lg12 ms-u-md12 card-view tooltip"  *ngFor="let timeslot of timeslots;let i=index" [routerLink]="[ '/details',timeslot]">
+    <div class="ms-Grid-col ms-u-sm12 ms-u-lg12 ms-u-md12 card-view "  *ngFor="let timeslot of timeslots;let i=index" [routerLink]="[ '/details',timeslot]">
       <mat-card [ngClass]="{'book-view':timeslot.isbooked}">
         <div class="time-content">{{timeslot.time}}
-          <span class="tooltiptext" *ngIf="timeslot.isbooked">Booked by {{timeslot.firstname}}</span>
+          <span class="hide" *ngIf="timeslot.isbooked">Booked by {{timeslot.firstname}}</span>
         </div>
       </mat-card>
     </div>
